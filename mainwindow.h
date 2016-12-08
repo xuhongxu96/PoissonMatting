@@ -21,6 +21,12 @@ public:
 private slots:
     void on_actionOpen_triggered();
 
+    void on_actionDraw_Unknown_triggered(bool checked);
+
+    void on_actionMark_Foreground_triggered();
+
+    void on_actionClear_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString filename;

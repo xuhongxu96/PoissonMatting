@@ -10,6 +10,7 @@ public:
     PoissonMatting();
     void open(QString filename);
     QImage &getImage();
+    cv::Mat &getImageMat();
 protected:
     cv::Mat img;
     QImage qimg;
