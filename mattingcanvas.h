@@ -16,22 +16,28 @@ public:
     explicit MattingCanvas(QWidget *parent = 0);
     QSize sizeHint() const { return img.size(); }
     QSize minimumSizeHint() const { return img.size(); }
+    cv::Mat getTrimapMat() const;
     void setImage(cv::Mat &imgMat);
     void setDrawing(bool drawing);
     void setFilling(bool filling);
     void clearFilling();
     void clearAll();
-    ~MattingCanvas();
+    void setPenSize(int s);
+    int getPenSize() const { return penSize; }
 protected:
     cv::Mat *imgMat = nullptr;
+    cv::Mat fillMat;
     QImage img;
     QImage trimap;
     QImage fillMap;
-    QPen pen = QPen(QColor(100, 100, 100));
+    QPen pen = QPen(QColor(128, 128, 128));
     bool isDrawing = false;
     bool isFilling = false;
     bool isPressed = false;
+    bool refill = true;
     int x, y;
+    int mouseX, mouseY;
+    int penSize = 10;
 signals:
 
 public slots:

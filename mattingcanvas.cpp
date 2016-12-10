@@ -116,7 +116,15 @@ cv::Mat MattingCanvas::QImageToCvMat(const QImage &inImage, bool inCloneImageDat
 
 MattingCanvas::MattingCanvas(QWidget *parent) : QWidget(parent)
 {
-    pen.setWidth(10);
+    pen.setWidth(penSize);
+    setMouseTracking(true);
+}
+
+cv::Mat MattingCanvas::getTrimapMat() const
+{
+    cv::Mat temp;
+    cv::cvtColor(fillMat, temp, CV_RGB2GRAY);
+    return temp;
 }
 
 void MattingCanvas::setImage(cv::Mat &imgMat)
@@ -126,6 +134,7 @@ void MattingCanvas::setImage(cv::Mat &imgMat)
     this->setFixedSize(img.size());
     trimap = QImage(img.size(), QImage::Format_ARGB32);
     trimap.fill(Qt::transparent);
+    refill = true;
     repaint();
 }
 
@@ -142,6 +151,7 @@ void MattingCanvas::setFilling(bool filling)
 void MattingCanvas::clearFilling()
 {
     fillMap = QImage();
+    refill = true;
     repaint();
 }
 
@@ -151,8 +161,10 @@ void MattingCanvas::clearAll()
     clearFilling();
 }
 
-MattingCanvas::~MattingCanvas()
+void MattingCanvas::setPenSize(int s)
 {
+    pen.setWidth(s);
+    penSize = s;
 }
 
 void MattingCanvas::paintEvent(QPaintEvent *)
@@ -162,6 +174,8 @@ void MattingCanvas::paintEvent(QPaintEvent *)
     painter.drawImage(QPoint(0, 0), trimap);
     painter.setCompositionMode(QPainter::CompositionMode_SoftLight);
     painter.drawImage(QPoint(0, 0), fillMap);
+    painter.setCompositionMode(QPainter::CompositionMode_Overlay);
+    painter.drawRect(QRect(mouseX - penSize / 2, mouseY - penSize / 2, penSize, penSize));
     painter.end();
 }
 
@@ -178,9 +192,11 @@ void MattingCanvas::mouseReleaseEvent(QMouseEvent *event)
     x = event->x();
     y = event->y();
     if (isFilling) {
-        isFilling = false;
-        cv::Mat fillMat = QImageToCvMat(trimap);
-        cv::cvtColor(fillMat, fillMat, CV_RGBA2RGB);
+        if (refill) {
+            refill = false;
+            fillMat = QImageToCvMat(trimap);
+            cv::cvtColor(fillMat, fillMat, CV_RGBA2RGB);
+        }
         cv::floodFill(fillMat, cv::Point(x, y), cv::Scalar(255, 255, 255));
         fillMap = cvMatToQImage(fillMat);
         repaint();
@@ -189,14 +205,18 @@ void MattingCanvas::mouseReleaseEvent(QMouseEvent *event)
 
 void MattingCanvas::mouseMoveEvent(QMouseEvent *event)
 {
+    mouseX = event->x();
+    mouseY = event->y();
     if (isDrawing && isPressed) {
-        if (abs(x - event->x()) + abs(y - event->y()) < 5) return;
-        QPainter painter(&trimap);
-        painter.setPen(pen);
-        painter.drawLine(QPoint(x, y), QPoint(event->x(), event->y()));
-        painter.end();
-        repaint();
-        x = event->x();
-        y = event->y();
+        if (abs(x - event->x()) + abs(y - event->y()) > 5) {
+            QPainter painter(&trimap);
+            painter.setPen(pen);
+            painter.drawLine(QPoint(x, y), QPoint(event->x(), event->y()));
+            painter.end();
+            refill = true;
+            x = event->x();
+            y = event->y();
+        }
     }
+    repaint();
 }

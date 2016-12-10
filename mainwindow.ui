@@ -40,7 +40,23 @@
     </property>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuOperation">
+    <property name="title">
+     <string>Operation</string>
+    </property>
+    <addaction name="action_Add_Pen_Size"/>
+    <addaction name="action_Sub_Pen_Size"/>
+    <addaction name="separator"/>
+    <addaction name="actionDraw_Unknown"/>
+    <addaction name="actionMark_Foreground"/>
+    <addaction name="separator"/>
+    <addaction name="actionClear_Mark"/>
+    <addaction name="actionClear"/>
+    <addaction name="separator"/>
+    <addaction name="actionMatte"/>
+   </widget>
    <addaction name="menu"/>
+   <addaction name="menuOperation"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
@@ -59,21 +75,38 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionOpen"/>
+   <addaction name="separator"/>
+   <addaction name="action_Add_Pen_Size"/>
+   <addaction name="action_Sub_Pen_Size"/>
+   <addaction name="separator"/>
    <addaction name="actionDraw_Unknown"/>
    <addaction name="actionMark_Foreground"/>
+   <addaction name="separator"/>
+   <addaction name="actionClear_Mark"/>
    <addaction name="actionClear"/>
+   <addaction name="separator"/>
+   <addaction name="actionMatte"/>
+   <addaction name="separator"/>
+   <addaction name="actionExit"/>
   </widget>
   <action name="actionOpen">
    <property name="text">
     <string>Open</string>
    </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open an Image.&lt;/p&gt;&lt;p&gt;(Shortcut: O)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
    <property name="shortcut">
-    <string>Ctrl+O</string>
+    <string>O</string>
    </property>
   </action>
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Exit&lt;br/&gt;(Shortcut: Ctrl+Q)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -85,6 +118,9 @@
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;About&lt;br/&gt;(Shortcut: Ctrl+/)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+/</string>
@@ -101,18 +137,21 @@
     <string>Draw Unknown</string>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Draw unknown area.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Draw unknown area.&lt;br/&gt;(Shortcut: U)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="shortcut">
     <string>U</string>
    </property>
   </action>
   <action name="actionMark_Foreground">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Mark Foreground</string>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fill and mark the foreground area surrounded by the unknown area.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fill and mark the foreground area surrounded by the unknown area.&lt;br/&gt;(Shortcut: F)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="shortcut">
     <string>F</string>
@@ -123,10 +162,54 @@
     <string>Clear All</string>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear all unknown area and foreground marks.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear all unknown area and foreground marks.&lt;br/&gt;(Shortcut: C)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="shortcut">
     <string>C</string>
+   </property>
+  </action>
+  <action name="actionMatte">
+   <property name="text">
+    <string>Matte</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Start Poisson Matting!&lt;br/&gt;(Shortcut: M)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="shortcut">
+    <string>M</string>
+   </property>
+  </action>
+  <action name="actionClear_Mark">
+   <property name="text">
+    <string>Clear Mark</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear foreground marks.&lt;br/&gt;(Shortcut: D)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="shortcut">
+    <string>D</string>
+   </property>
+  </action>
+  <action name="action_Add_Pen_Size">
+   <property name="text">
+    <string>+ Pen Size</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;+ Pen Size&lt;br/&gt;(Shortcut: +)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="shortcut">
+    <string>=</string>
+   </property>
+  </action>
+  <action name="action_Sub_Pen_Size">
+   <property name="text">
+    <string>- Pen Size</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;- Pen Size&lt;br/&gt;(Shortcut: -)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="shortcut">
+    <string>-</string>
    </property>
   </action>
  </widget>

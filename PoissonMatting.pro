@@ -36,4 +36,10 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui
 
 DISTFILES += \
-    README.md
+    README.md \
+    poisson1.png \
+    poisson2.png \
+    poisson3.png \
+    poisson4.png \
+    poisson5.png \
+    poisson6.png

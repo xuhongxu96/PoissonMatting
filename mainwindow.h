@@ -23,9 +23,19 @@ private slots:
 
     void on_actionDraw_Unknown_triggered(bool checked);
 
-    void on_actionMark_Foreground_triggered();
+    void on_actionMark_Foreground_triggered(bool checked);
 
     void on_actionClear_triggered();
+
+    void on_actionExit_triggered();
+
+    void on_actionMatte_triggered();
+
+    void on_actionClear_Mark_triggered();
+
+    void on_action_Add_Pen_Size_triggered();
+
+    void on_action_Sub_Pen_Size_triggered();
 
 private:
     Ui::MainWindow *ui;
