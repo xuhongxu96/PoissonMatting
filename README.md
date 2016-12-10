@@ -2,14 +2,14 @@
 
 Final Work for Digital Image Processing Course
 
-# TODO
+## TODO
 
 1. Local Poisson Matting
 2. Load Trimap from File
 3. Save Image
 4. More User-friendly GUI (Like Undo, Redo, ...)
 
-# Screenshots
+## Screenshots
 
 ![p1](https://raw.githubusercontent.com/xuhongxu96/PoissonMatting/master/poisson1.png)
 
