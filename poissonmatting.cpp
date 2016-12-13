@@ -2,6 +2,7 @@
 #include <QDebug>
 #include <algorithm>
 #include <vector>
+#include <string>
 
 /****************************************************
  *
@@ -50,7 +51,7 @@ PoissonMatting::PoissonMatting()
 
 void PoissonMatting::open(QString filename)
 {
-    img = cv::imread(filename.toStdString());
+    img = cv::imread(std::string(filename.toLocal8Bit()));
 }
 
 cv::Mat &PoissonMatting::getImageMat()

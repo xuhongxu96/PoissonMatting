@@ -14,15 +14,8 @@ TEMPLATE = app
 INCLUDEPATH += "D:/opencv/build/include"
 
 LIBS += -LD:/opencv/build/x64/vc14/lib
-
-CONFIG(debug, debug|release)
-{
-    LIBS += -lopencv_world310d
-}
-CONFIG(release, debug|release)
-{
-    LIBS += -lopencv_world310
-}
+DEBUG:LIBS += -lopencv_world310
+RELEASE:LIBS += -lopencv_world310
 
 SOURCES += main.cpp\
         mainwindow.cpp \
