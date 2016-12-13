@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>PoissonMatting</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout"/>
@@ -195,7 +195,7 @@
     <string>+ Pen Size</string>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;+ Pen Size&lt;br/&gt;(Shortcut: +)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;+ Pen Size&lt;br/&gt;(Shortcut: =)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="shortcut">
     <string>=</string>

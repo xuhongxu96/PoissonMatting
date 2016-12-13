@@ -14,8 +14,8 @@ TEMPLATE = app
 INCLUDEPATH += "D:/opencv/build/include"
 
 LIBS += -LD:/opencv/build/x64/vc14/lib
-DEBUG:LIBS += -lopencv_world310
-RELEASE:LIBS += -lopencv_world310
+Debug:LIBS += -lopencv_world310d
+Release:LIBS += -lopencv_world310
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -36,3 +36,5 @@ DISTFILES += \
     poisson4.png \
     poisson5.png \
     poisson6.png
+
+TRANSLATIONS += poisson.ts
