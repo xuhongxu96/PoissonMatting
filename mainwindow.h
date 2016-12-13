@@ -37,6 +37,8 @@ private slots:
 
     void on_action_Sub_Pen_Size_triggered();
 
+    void on_actionAbout_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString filename;

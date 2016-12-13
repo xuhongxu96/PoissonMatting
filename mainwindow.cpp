@@ -3,6 +3,7 @@
 #include "poissonmatting.h"
 
 #include <QFileDialog>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -78,4 +79,9 @@ void MainWindow::on_action_Add_Pen_Size_triggered()
 void MainWindow::on_action_Sub_Pen_Size_triggered()
 {
     canvas->setPenSize(canvas->getPenSize() - 5);
+}
+
+void MainWindow::on_actionAbout_triggered()
+{
+    QMessageBox::about(this, tr("About me"), tr("This is Poisson Matting Application for my final work of Digital Image Processing Course.\n\nHongxu Xu\n201411212027\n\nComputer Science Major\nCollege of Information Science and Technology\nBeijing Normal University"));
 }
